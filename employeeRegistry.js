@@ -15,30 +15,36 @@ console.log(
 selectOperation()
 
 function selectOperation(){
-    const operation = +prompt('Enter a number corresponding to the operation >>   ')
-    try{
-        if(operation>6 || operation <1 ){throw "please enter a valid number"} // log error to .txt file
-        
+    const operation = prompt('Enter a number corresponding to the operation >>   ')
+    
+        try{
         switch(operation){
-            case 1:
+            case '1':
                 createEmployee();
                 break;
-            case 2:
+            case '2':
                 updateEmployeeRecord();
                 break;
-            case 3:
+            case '3':
                 deleteEmployee();
                 break;
-            case 4:
+            case '4':
                 displayByDepartment();
                 break;
-            case 5:
+            case '5':
                 displayByID();
                 break;
+            case '6':
+                console.log('\nGoodbye.\n')
+                return
+                
+            default:
+                throw new Error('Invalid input')
+                
         }
-
     }
-    catch(error){console.log(error);
+
+    catch(error){console.log(`${error.message}, please enter a valid number\n`);
                 selectOperation()}
 }
 
