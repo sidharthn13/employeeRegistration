@@ -38,10 +38,22 @@ function createEmployee(){
     const newData = {name:employeeName,dob:employeeDob,dept:employeeDept,id:employeeID}
 
     readJsonData()
+    //check if user already exists        
+    for(let i = 0; i< readData.length; i++){
+        if(readData[i]['name']===employeeName){
+            console.log('\n\nUser has an existing account')
+        selectOperation()
+        return;
+        }
+    }
+        
     readData.push(newData);
     writeJsonData()
     console.log('Employee data added\n\n')
     selectOperation()
+}
+
+function deleteEmployee(){
 
 }
 
