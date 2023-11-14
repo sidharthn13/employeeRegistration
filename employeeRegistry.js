@@ -23,6 +23,9 @@ function selectOperation(){
             case 1:
                 createEmployee();
                 break;
+            case 3:
+                deleteEmployee();
+                break;
         }
 
     }
@@ -54,7 +57,18 @@ function createEmployee(){
 }
 
 function deleteEmployee(){
-
+    const name = prompt('Enter name of employee whose record has to be deleted > ')
+    readJsonData()
+    for(let i = 0; i < readData.length; i++){
+        if(readData[i]['name']===name){
+            readData.splice(i,1);
+            writeJsonData();
+            console.log('\nDelete operation successful\n\n')
+            selectOperation()
+            return}
+    }
+    console.log('No such user Exists')
+    selectOperation();
 }
 
 
