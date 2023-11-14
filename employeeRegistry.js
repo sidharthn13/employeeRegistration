@@ -200,8 +200,7 @@ function createErrorMessage(error){
 
 
 function log(message){
-    let data = fs.readFileSync('./errors.txt','utf-8')
-    fs.writeFileSync(`./errors.txt`,`${data}\n${message}`,"utf-8")
+    fs.appendFileSync(`./errors.txt`,`${message}\n`,"utf-8")
 }
 
 
