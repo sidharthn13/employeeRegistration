@@ -80,7 +80,9 @@ function createEmployee(){
 }
 
 function deleteEmployee(){
+    try{
     const name = prompt('Enter name of employee whose record has to be deleted > ')
+    if(name ===""){throw new Error('Client error, employee name not provided for deletion.')}
     readJsonData()
     for(let i = 0; i < readData.length; i++){
         if(readData[i]['name']===name){
@@ -90,12 +92,19 @@ function deleteEmployee(){
             selectOperation()
             return}
     }
-    console.log('\nNo such user Exists')
-    selectOperation();
+    console.log('\nNo such user Exists\n')
+    selectOperation();}
+    catch(error){
+        console.log(`\n${error.message}. Please enter data\n`)
+                createErrorMessage(error);
+                selectOperation()
+    }
 }
 
 function displayByID(){
+    try{
     const id = prompt('Enter employee ID > ')
+    if(id ===""){throw new Error('Client error, employee ID not provided.')}
     readJsonData()
     for(let i = 0;i<readData.length;i++){
         if(readData[i]['id'] === id){
@@ -105,11 +114,18 @@ function displayByID(){
         }
     }
     console.log("\nNo employee with this ID\n")
-    selectOperation();
+    selectOperation();}
+    catch(error){
+        console.log(`\n${error.message}. Please enter data\n`)
+                createErrorMessage(error);
+                selectOperation()
+    }
 }
 
 function displayByDepartment(){
+    try{
     const department = prompt("Enter department name > ")
+    if(department ===""){throw new Error('Client error, department name not given.')}
     readJsonData()
     let employeesInDepartment = []
     let employeeCount = 0
@@ -124,11 +140,16 @@ function displayByDepartment(){
     }
     console.log(`\nList of employees in ${department} : ${employeesInDepartment}\n
     Number of employees in ${department} : ${employeeCount} `)
-    selectOperation()
+    selectOperation()}
+    catch(error){console.log(`\n${error.message}. Please enter data\n`)
+                createErrorMessage(error);
+                selectOperation()}
 }
 
 function updateEmployeeRecord(){
+    try{
     const name = prompt('Enter name of employee whose record has to be updated > ')
+    if(name ===""){throw new Error('Client error, employee name not provided.')}
     readJsonData()
     for(let i = 0; i < readData.length; i++){
         if(readData[i]['name']===name){
@@ -139,7 +160,10 @@ function updateEmployeeRecord(){
             console.log('\nSuccessfully Updated\n')
         }
     }
-    selectOperation()
+    selectOperation()}
+    catch(error){console.log(`\n${error.message}. Please enter data\n`)
+    createErrorMessage(error);
+    selectOperation()}
 }
 
 function update(index){
@@ -186,6 +210,7 @@ function getSessionDuration(){
 }
 
 function createErrorMessage(error){
+
     const date = new Date
     let hours = date.getHours()
     let minutes = date.getMinutes()
