@@ -15,13 +15,16 @@ console.log(
 selectOperation()
 
 function selectOperation(){
-    const operation = +prompt('\nEnter a number corresponding to the operation >>   ')
+    const operation = +prompt('Enter a number corresponding to the operation >>   ')
     try{
         if(operation>6 || operation <1 ){throw "please enter a valid number"} // log error to .txt file
         
         switch(operation){
             case 1:
                 createEmployee();
+                break;
+            case 2:
+                updateEmployeeRecord();
                 break;
             case 3:
                 deleteEmployee();
@@ -63,7 +66,7 @@ function createEmployee(){
 }
 
 function deleteEmployee(){
-    const name = prompt('\nEnter name of employee whose record has to be deleted > ')
+    const name = prompt('Enter name of employee whose record has to be deleted > ')
     readJsonData()
     for(let i = 0; i < readData.length; i++){
         if(readData[i]['name']===name){
@@ -78,7 +81,7 @@ function deleteEmployee(){
 }
 
 function displayByID(){
-    const id = prompt('\nEnter employee ID > ')
+    const id = prompt('Enter employee ID > ')
     readJsonData()
     for(let i = 0;i<readData.length;i++){
         if(readData[i]['id'] === id){
@@ -92,7 +95,7 @@ function displayByID(){
 }
 
 function displayByDepartment(){
-    const department = prompt("\nEnter department name > ")
+    const department = prompt("Enter department name > ")
     readJsonData()
     let employeesInDepartment = []
     let employeeCount = 0
@@ -110,6 +113,31 @@ function displayByDepartment(){
     selectOperation()
 }
 
+function updateEmployeeRecord(){
+    const name = prompt('Enter name of employee whose record has to be updated > ')
+    readJsonData()
+    for(let i = 0; i < readData.length; i++){
+        if(readData[i]['name']===name){
+            console.log('Current employee details:')
+            displayDetails(readData[i])
+            //update 
+            update(i)
+            console.log('\nSuccessfully Updated\n')
+        }
+    }
+    selectOperation()
+}
+
+function update(index){
+    const name = prompt('Enter name > ')
+    const department = prompt('Enter department > ')
+    const dob = prompt('Enter date of birth > ')
+    readData[index]['name'] = name
+    readData[index]['dept'] = department
+    readData[index]['dob'] = dob
+    writeJsonData();
+}
+
 //function to read from JSON file
 function readJsonData(){
 readData = fs.readFileSync('data.json')
@@ -123,7 +151,7 @@ function writeJsonData(){
 
 //function to display employee details
 function displayDetails(employeeObject){
-    console.log(`\n\nEmployee name: ${employeeObject['name']}\nEmployee ID: ${employeeObject['id']}\nEmployee department: ${employeeObject['dept']}\n\n`)
+    console.log(`\nEmployee name: ${employeeObject['name']}\nEmployee ID: ${employeeObject['id']}\nEmployee department: ${employeeObject['dept']}\n`)
 }
 
 
