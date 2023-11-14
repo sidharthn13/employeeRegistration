@@ -1,7 +1,7 @@
 const fs = require("fs");
 const uuid = require("uuid")
 const prompt = require('prompt-sync')();
-fs.writeFileSync('data.json','[]')
+//fs.writeFileSync('data.json','[]')
 let readData // to store data after reading JSON file
 
 
@@ -15,7 +15,7 @@ console.log(
 selectOperation()
 
 function selectOperation(){
-    const operation = +prompt('Enter a number corresponding to the operation >>   ')
+    const operation = +prompt('\nEnter a number corresponding to the operation >>   ')
     try{
         if(operation>6 || operation <1 ){throw "please enter a valid number"} // log error to .txt file
         
@@ -25,6 +25,12 @@ function selectOperation(){
                 break;
             case 3:
                 deleteEmployee();
+                break;
+            case 4:
+                displayByDepartment();
+                break;
+            case 5:
+                displayByID();
                 break;
         }
 
@@ -52,12 +58,12 @@ function createEmployee(){
         
     readData.push(newData);
     writeJsonData()
-    console.log('Employee data added\n\n')
+    console.log('\nEmployee data added\n\n')
     selectOperation()
 }
 
 function deleteEmployee(){
-    const name = prompt('Enter name of employee whose record has to be deleted > ')
+    const name = prompt('\nEnter name of employee whose record has to be deleted > ')
     readJsonData()
     for(let i = 0; i < readData.length; i++){
         if(readData[i]['name']===name){
@@ -67,10 +73,42 @@ function deleteEmployee(){
             selectOperation()
             return}
     }
-    console.log('No such user Exists')
+    console.log('\nNo such user Exists')
     selectOperation();
 }
 
+function displayByID(){
+    const id = prompt('\nEnter employee ID > ')
+    readJsonData()
+    for(let i = 0;i<readData.length;i++){
+        if(readData[i]['id'] === id){
+            displayDetails(readData[i])
+            selectOperation();
+            return
+        }
+    }
+    console.log("\nNo employee with this ID\n")
+    selectOperation();
+}
+
+function displayByDepartment(){
+    const department = prompt("\nEnter department name > ")
+    readJsonData()
+    let employeesInDepartment = []
+    let employeeCount = 0
+    for(let i = 0; i<readData.length;i++){
+        if(readData[i]['dept'] === department){
+            let employeeName = readData[i]['name']
+            let employeeDob = readData[i]['dob']
+            let employeeDetails = {name:employeeName,dob:employeeDob}
+            employeesInDepartment.push(JSON.stringify(employeeDetails))
+            employeeCount += 1
+        }
+    }
+    console.log(`\nList of employees in ${department} : ${employeesInDepartment}\n
+    Number of employees in ${department} : ${employeeCount} `)
+    selectOperation()
+}
 
 //function to read from JSON file
 function readJsonData(){
@@ -83,6 +121,10 @@ function writeJsonData(){
     fs.writeFileSync('data.json',writeData) 
 }
 
+//function to display employee details
+function displayDetails(employeeObject){
+    console.log(`\n\nEmployee name: ${employeeObject['name']}\nEmployee ID: ${employeeObject['id']}\nEmployee department: ${employeeObject['dept']}\n\n`)
+}
 
 
 
