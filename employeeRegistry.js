@@ -52,6 +52,7 @@ function selectOperation(){
     }
 
     catch(error){console.log(`${error.message}, please enter a valid number\n`);
+                createErrorMessage(error);
                 selectOperation()}
 }
 
@@ -182,6 +183,25 @@ function getSessionDuration(){
         const sessionDuration = Math.floor((currentTime - loginTime)/60)
         console.log(`\nsession lasted ${sessionDuration} minutes.\n`)
     }
+}
+
+function createErrorMessage(error){
+    const date = new Date
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+    let seconds = date.getSeconds()
+    hours = (hours < 10)? "0"+hours:hours
+    minutes = (minutes < 10)? "0"+minutes:minutes
+    seconds = (seconds < 10)? "0"+seconds:seconds
+    const timeOfError = `${hours}:${minutes}:${seconds}`
+    const errorInLog = `${error.message} || Time: ${timeOfError}`
+    log(errorInLog)
+}
+
+
+function log(message){
+    let data = fs.readFileSync('./errors.txt','utf-8')
+    fs.writeFileSync(`./errors.txt`,`${data}\n${message}`,"utf-8")
 }
 
 
