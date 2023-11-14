@@ -3,6 +3,7 @@ const uuid = require("uuid")
 const prompt = require('prompt-sync')();
 //fs.writeFileSync('data.json','[]')
 let readData // to store data after reading JSON file
+let loginTime//to keep track of session duration
 
 
 console.log(
@@ -20,21 +21,27 @@ function selectOperation(){
         try{
         switch(operation){
             case '1':
+                setLoginTime()
                 createEmployee();
                 break;
             case '2':
+                setLoginTime()
                 updateEmployeeRecord();
                 break;
             case '3':
+                setLoginTime()
                 deleteEmployee();
                 break;
             case '4':
+                setLoginTime()
                 displayByDepartment();
                 break;
             case '5':
+                setLoginTime()
                 displayByID();
                 break;
             case '6':
+                getSessionDuration()
                 console.log('\nGoodbye.\n')
                 return
                 
@@ -158,6 +165,23 @@ function writeJsonData(){
 //function to display employee details
 function displayDetails(employeeObject){
     console.log(`\nEmployee name: ${employeeObject['name']}\nEmployee ID: ${employeeObject['id']}\nEmployee department: ${employeeObject['dept']}\n`)
+}
+
+//function to set login time
+function setLoginTime(){
+    if(!loginTime){
+        const date = new Date()
+        loginTime = date.getTime()/1000
+    }
+}
+
+function getSessionDuration(){
+    if(loginTime){
+        const date = new Date()
+        let currentTime = date.getTime()/1000
+        const sessionDuration = Math.floor((currentTime - loginTime)/60)
+        console.log(`\nsession lasted ${sessionDuration} minutes.\n`)
+    }
 }
 
 
