@@ -1,10 +1,12 @@
 const fs = require("fs");
 const uuid = require("uuid")
 const prompt = require('prompt-sync')();
-//fs.writeFileSync('data.json','[]')
 let readData // to store data after reading JSON file
 let loginTime//to keep track of session duration
 
+let eN = ""
+let eD = ""
+let eDob
 
 console.log(
   "Welcome to employee registration system.\nWhat would you like to do?\n\n"
@@ -56,10 +58,43 @@ function selectOperation(){
                 selectOperation()}
 }
 
+function getName(){
+    
+        let employee = prompt('Enter employee name > ')
+        try{
+        if(employee == ""){throw new Error('Client error: Invalid name format')}
+        
+        }
+    
+    catch(error){createErrorMessage(error);
+                console.log(`\n${error.message}..Please enter a valid name\n`);
+            getName()}
+        if(eN == ""){eN= employee}
+        
+}
+function retName(){getName();return eN}
+
+function getDepartment(){
+    
+        let dept = prompt('Enter employee department > ')
+        try{
+        if(dept == ""){throw new Error('Client error: No input')}
+       
+        }
+    
+    catch(error){createErrorMessage(error);
+                console.log(`\n${error.message}..Please enter a valid department name\n`);
+            getDepartment()}
+        if(eD ==""){eD = dept}
+}
+function retDept(){getDepartment();return eD}
+
 function createEmployee(){
-    const employeeName = prompt('Enter employee name > ')
-    const employeeDob = prompt('Enter employee date of birth > ')
-    const employeeDept = prompt('Enter employee department > ')
+    let employeeName = retName()
+    eN = ""
+    let employeeDob = prompt('Enter employee dob > ')
+    let employeeDept = retDept()
+    eD =""
     const employeeID = uuid.v4() //generates random unique ID for employee
     const newData = {name:employeeName,dob:employeeDob,dept:employeeDept,id:employeeID}
 
