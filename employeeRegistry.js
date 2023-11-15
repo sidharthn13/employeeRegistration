@@ -3,10 +3,9 @@ const uuid = require("uuid");
 const prompt = require("prompt-sync")();
 let readData; // to store data after reading JSON file
 let loginTime; //to keep track of session duration
-
-let eN;
-let eD;
-let eDob;
+let employeeNameGlobal;
+let employeeDepartmentGlobal;
+let employeeDobGlobal;
 
 console.log(
   "Welcome to employee registration system.\nWhat would you like to do?\n\n"
@@ -65,7 +64,7 @@ function getName() {
     if (employee == "") {
       throw new Error("Client error: Invalid name format");
     }
-    eN = employee;
+    employeeNameGlobal = employee;
   } catch (error) {
     createErrorMessage(error);
     console.log(`\n${error.message}..Please enter a valid name\n`);
@@ -74,7 +73,7 @@ function getName() {
 }
 function retName() {
   getName();
-  return eN;
+  return employeeNameGlobal;
 }
 
 function getDepartment() {
@@ -83,7 +82,7 @@ function getDepartment() {
     if (dept == "") {
       throw new Error("Client error: No input");
     }
-    eD = dept;
+    employeeDepartmentGlobal = dept;
   } catch (error) {
     createErrorMessage(error);
     console.log(`\n${error.message}..Please enter a valid department name\n`);
@@ -92,7 +91,7 @@ function getDepartment() {
 }
 function retDept() {
   getDepartment();
-  return eD;
+  return employeeDepartmentGlobal;
 }
 
 function getDob() {
@@ -102,7 +101,7 @@ function getDob() {
     if (!regexDob.test(dob)) {
       throw new Error("Client error: invalid DOB ");
     }
-    eDob = dob;
+    employeeDobGlobal = dob;
   } catch (error) {
     createErrorMessage(error);
     console.log(`\n${error.message}..Please enter a valid DOB\n`);
@@ -111,7 +110,7 @@ function getDob() {
 }
 function retDob() {
   getDob();
-  return eDob;
+  return employeeDobGlobal;
 }
 
 function createEmployee() {
