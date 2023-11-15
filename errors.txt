@@ -1,5 +1,2 @@
 
 
-
-Client error: Invalid name format || Time: 11:16:29
-Client error: No input || Time: 11:16:34

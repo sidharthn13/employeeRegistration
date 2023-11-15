@@ -87,9 +87,23 @@ function getDepartment(){
 }
 function retDept(){getDepartment();return eD}
 
+function getDob(){
+    let dob = prompt('Enter date of birth (dd:mm:yy) > ')
+    const regexDob = /^(0[1-9]|[12][0-9]|3[01])\:(0[1-9]|1[0-2])\:\d{2}$/
+    try{
+        if(!regexDob.test(dob)){throw new Error('Client error: invalid DOB ')}
+        eDob = dob
+    }
+    catch(error){createErrorMessage(error)
+        console.log(`\n${error.message}..Please enter a valid DOB\n`);
+        getDob()
+    }
+}
+function retDob(){getDob();return eDob}
+
 function createEmployee(){
     let employeeName = retName()
-    let employeeDob = prompt('Enter employee dob > ')
+    let employeeDob = retDob()
     let employeeDept = retDept()
     const employeeID = uuid.v4() //generates random unique ID for employee
     const newData = {name:employeeName,dob:employeeDob,dept:employeeDept,id:employeeID}
