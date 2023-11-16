@@ -7,16 +7,15 @@ let employeeNameGlobal;
 let employeeDepartmentGlobal;
 let employeeDobGlobal;
 
-console.log(
-  "Welcome to employee registration system.\nWhat would you like to do?\n\n"
-);
-console.log(
-  "1. Create new employee \n2. Update employee record \n3. Delete employee \n4. Display employees by department \n5. Display employee by employee id \n6. exit\n "
-);
-
 selectOperation();
 
 function selectOperation() {
+  console.log(
+    "\n\nWelcome to employee registration system. What would you like to do?\n"
+  );
+  console.log(
+    "1. Create new employee \n2. Update employee record \n3. Delete employee \n4. Display employees by department \n5. Display employee by employee id \n6. exit\n "
+  );
   const operation = prompt(
     "Enter a number corresponding to the operation >>   "
   );
@@ -45,7 +44,7 @@ function selectOperation() {
         break;
       case "6":
         getSessionDuration();
-        console.log("\nGoodbye.\n");
+        console.log("Goodbye.\n");
         return;
 
       default:
@@ -133,7 +132,7 @@ function createEmployee() {
   //check if user already exists
   for (let i = 0; i < readData.length; i++) {
     if (readData[i]["name"] === employeeName) {
-      console.log("\n\nUser has an existing account");
+      console.log("\nUser has an existing account\n");
       selectOperation();
       return;
     }
@@ -141,35 +140,23 @@ function createEmployee() {
 
   readData.push(newData);
   writeJsonData();
-  console.log("\nEmployee data added\n\n");
+  console.log("\nEmployee data added..heading back to home page\n");
   selectOperation();
 }
 
 function deleteEmployee() {
-  try {
-    const name = prompt(
-      "Enter name of employee whose record has to be deleted > "
-    );
-    if (name === "") {
-      throw new Error("Client error, employee name not provided for deletion.");
+  const name = returnName();
+  readJsonData();
+  for (let i = 0; i < readData.length; i++) {
+    if (readData[i]["name"] === name) {
+      readData.splice(i, 1);
+      writeJsonData();
+      console.log("\nDelete operation successful..heading back to home page\n");
+      return selectOperation();
     }
-    readJsonData();
-    for (let i = 0; i < readData.length; i++) {
-      if (readData[i]["name"] === name) {
-        readData.splice(i, 1);
-        writeJsonData();
-        console.log("\nDelete operation successful\n\n");
-        selectOperation();
-        return;
-      }
-    }
-    console.log("\nNo such user Exists\n");
-    selectOperation();
-  } catch (error) {
-    console.log(`\n${error.message}. Please enter data\n`);
-    createErrorMessage(error);
-    selectOperation();
   }
+  console.log("\nNo such user..heading back to home page\n");
+  selectOperation();
 }
 
 function displayByID() {
@@ -196,37 +183,28 @@ function displayByID() {
 }
 
 function displayByDepartment() {
-  try {
-    const department = prompt("Enter department name > ");
-    if (department === "") {
-      throw new Error("Client error, department name not given.");
-    }
-    readJsonData();
-    const employeesInDepartment = [];
-    let employeeCount = 0;
-    for (let i = 0; i < readData.length; i++) {
-      if (readData[i]["dept"] === department) {
-        const employeeName = readData[i]["name"];
-        const employeeDob = readData[i]["dob"];
-        const employeeAge = calculateAge(employeeDob);
+  const department = returnDepartment();
+  readJsonData();
+  const employeesInDepartment = [];
+  let employeeCount = 0;
+  for (let i = 0; i < readData.length; i++) {
+    if (readData[i]["dept"] === department) {
+      const employeeName = readData[i]["name"];
+      const employeeDob = readData[i]["dob"];
+      const employeeAge = calculateAge(employeeDob);
 
-        const employeeDetails = {
-          name: employeeName,
-          dob: employeeDob,
-          age: employeeAge,
-        };
-        employeesInDepartment.push(JSON.stringify(employeeDetails));
-        employeeCount += 1;
-      }
+      const employeeDetails = {
+        name: employeeName,
+        dob: employeeDob,
+        age: employeeAge,
+      };
+      employeesInDepartment.push(JSON.stringify(employeeDetails));
+      employeeCount += 1;
     }
-    console.log(`\nList of employees in ${department} : ${employeesInDepartment}\n
-    Number of employees in ${department} : ${employeeCount} `);
-    selectOperation();
-  } catch (error) {
-    console.log(`\n${error.message}. Please enter data\n`);
-    createErrorMessage(error);
-    selectOperation();
   }
+  console.log(`\nList of employees in ${department} : ${employeesInDepartment}\n
+    Number of employees in ${department} : ${employeeCount} `);
+  selectOperation();
 }
 
 function updateEmployeeRecord() {
@@ -238,7 +216,7 @@ function updateEmployeeRecord() {
       displayDetails(readData[i]);
       //update
       update(i);
-      console.log("\nSuccessfully Updated\n");
+      console.log("\nSuccessfully Updated..heading back to home page\n");
       return selectOperation();
     }
   }
@@ -288,7 +266,7 @@ function getSessionDuration() {
     const date = new Date();
     let currentTime = date.getTime() / 1000;
     const sessionDuration = Math.floor((currentTime - loginTime) / 60);
-    console.log(`\nsession lasted ${sessionDuration} minutes.\n`);
+    console.log(`\nYour session lasted ${sessionDuration} minutes.`);
   }
 }
 
