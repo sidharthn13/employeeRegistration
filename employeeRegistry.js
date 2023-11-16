@@ -69,7 +69,7 @@ function getName() {
   }
 }
 
-function returnName() {
+function namePrompt() {
   getName();
   return employeeNameGlobal;
 }
@@ -88,12 +88,12 @@ function getDepartment() {
   }
 }
 
-function returnDepartment() {
+function departmentPrompt() {
   getDepartment();
   return employeeDepartmentGlobal;
 }
 
-function getDob() {
+function getDateOfBirth() {
   let dob = prompt("Enter date of birth (dd-mm-yyyy) > ");
   const regexDob = /^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/;
   try {
@@ -104,19 +104,19 @@ function getDob() {
   } catch (error) {
     createErrorMessage(error);
     console.log(`\n${error.message}..Please enter a valid DOB\n`);
-    getDob();
+    getDateOfBirth();
   }
 }
 
-function returnDob() {
-  getDob();
+function dateOfBirthPrompt() {
+  getDateOfBirth();
   return employeeDobGlobal;
 }
 
 function createEmployee() {
-  const employeeName = returnName();
-  const employeeDob = returnDob();
-  const employeeDept = returnDepartment();
+  const employeeName = namePrompt();
+  const employeeDob = dateOfBirthPrompt();
+  const employeeDept = departmentPrompt();
   const employeeID = uuid.v4(); //generates random unique ID for employee
   const newData = {
     name: employeeName,
@@ -140,7 +140,7 @@ function createEmployee() {
 }
 
 function deleteEmployee() {
-  const name = returnName();
+  const name = namePrompt();
   readJsonData();
   for (let i = 0; i < readData.length; i++) {
     if (readData[i]["name"] === name) {
@@ -178,7 +178,7 @@ function displayByID() {
 }
 
 function displayByDepartment() {
-  const department = returnDepartment();
+  const department = departmentPrompt();
   readJsonData();
   const employeesInDepartment = [];
   let employeeCount = 0;
@@ -202,7 +202,7 @@ function displayByDepartment() {
 }
 
 function updateEmployeeRecord() {
-  const name = returnName();
+  const name = namePrompt();
   readJsonData();
   for (let i = 0; i < readData.length; i++) {
     if (readData[i]["name"] === name) {
@@ -219,9 +219,9 @@ function updateEmployeeRecord() {
 }
 
 function update(index) {
-  const name = returnName();
-  const department = returnDepartment();
-  const dob = returnDob();
+  const name = namePrompt();
+  const department = departmentPrompt();
+  const dob = dateOfBirthPrompt();
   readData[index]["name"] = name;
   readData[index]["dept"] = department;
   readData[index]["dob"] = dob;
