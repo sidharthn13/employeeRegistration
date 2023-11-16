@@ -6,7 +6,6 @@ let loginTime; //to keep track of session duration
 let employeeNameGlobal;
 let employeeDepartmentGlobal;
 let employeeDobGlobal;
-
 selectOperation();
 
 function selectOperation() {
@@ -19,7 +18,6 @@ function selectOperation() {
   const operation = prompt(
     "Enter a number corresponding to the operation >>   "
   );
-
   try {
     switch (operation) {
       case "1":
@@ -46,7 +44,6 @@ function selectOperation() {
         getSessionDuration();
         console.log("Goodbye.\n");
         return;
-
       default:
         throw new Error("Invalid input");
     }
@@ -127,7 +124,6 @@ function createEmployee() {
     dept: employeeDept,
     id: employeeID,
   };
-
   readJsonData();
   //check if user already exists
   for (let i = 0; i < readData.length; i++) {
@@ -137,7 +133,6 @@ function createEmployee() {
       return;
     }
   }
-
   readData.push(newData);
   writeJsonData();
   console.log("\nEmployee data added..heading back to home page\n");
@@ -192,7 +187,6 @@ function displayByDepartment() {
       const employeeName = readData[i]["name"];
       const employeeDob = readData[i]["dob"];
       const employeeAge = calculateAge(employeeDob);
-
       const employeeDetails = {
         name: employeeName,
         dob: employeeDob,

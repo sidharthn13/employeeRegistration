@@ -1,0 +1,113 @@
+[33mcommit 7b3736585409935145ee64bfd17794367392c717[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31memployeeRegistration/feature/sidharth/kl39[m[33m)[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Thu Nov 16 15:05:10 2023 +0530
+
+    code optimisations complete
+
+[33mcommit 84fc26f2b1e2c13514466df5180873bef2ccebbf[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Thu Nov 16 14:41:13 2023 +0530
+
+    optimised update operation
+
+[33mcommit 3c78b8235fa40020c8c4831639af4a3a0b336575[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Thu Nov 16 14:12:37 2023 +0530
+
+    replaced let declarations with const, wherever possible
+
+[33mcommit b80d131dfaab99f470f70b25fb488d3374a9b79e[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Thu Nov 16 13:59:52 2023 +0530
+
+    DOB format modified
+
+[33mcommit 0327307e30d7f304db16459aa1a8a0d8865b7cc8[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Thu Nov 16 13:41:31 2023 +0530
+
+    added exceeption handling feature to update operation
+
+[33mcommit 21a21103fc803516e6f7a5e074f3192a65b10a9a[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 14:25:49 2023 +0530
+
+    renamed variabled according to convention
+
+[33mcommit c1a2b230c2afe0feb36f09f1f4fdcc66124c1058[m
+Author: sidharthn13 <148940680+sidharthn13@users.noreply.github.com>
+Date:   Wed Nov 15 14:10:52 2023 +0530
+
+    readMe file edited to show prolem statement
+
+[33mcommit e8585cc9fcd836daeadb280e77ac5a4caf93f645[m
+Author: sidharthn13 <148940680+sidharthn13@users.noreply.github.com>
+Date:   Wed Nov 15 13:40:23 2023 +0530
+
+    readMe file added. File contains demo vids
+
+[33mcommit 2bbd4b1d7c4746be5cc9bd3d5a0143126ff524ac[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 12:18:30 2023 +0530
+
+    all features added
+
+[33mcommit 475eefed59840f650b2e051b489cb16b5c146d7b[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 11:36:41 2023 +0530
+
+    DOB validating function added
+
+[33mcommit 312d9541f0a040a125609434fa0b0cdd043839da[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 11:18:45 2023 +0530
+
+    optimised validating function for create user feature
+
+[33mcommit f7f2b0aea099fe7848c54d6f23501217acfba99a[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 11:14:21 2023 +0530
+
+    create user input validation complete for dept and name
+
+[33mcommit bbafd8fce54cc31e32a1278d08885515e91774fc[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 03:17:13 2023 +0530
+
+    try catch blocks implemented everywhere except in account creation
+
+[33mcommit 397f35500c967413b87fa86b435b337c175ecb74[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 02:32:47 2023 +0530
+
+    error logging function modified
+
+[33mcommit 24416b9766a3e8a2ec6e8afd6ae889d1c5e0a3c4[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 02:24:13 2023 +0530
+
+    error logging in .txt file feature added
+
+[33mcommit db17ef34d2d86646fc1b746d6235ebbd5abc6d98[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 01:09:49 2023 +0530
+
+    session duration tracker implemented
+
+[33mcommit f00b97c93f68e730eb60fd698062291f8d892764[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Wed Nov 15 00:30:31 2023 +0530
+
+    exit feature added
+
+[33mcommit a07589db30db88b51ea31e00c85302dc49d089a1[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Tue Nov 14 23:31:43 2023 +0530
+
+    update operation implemented successfully
+
+[33mcommit 2579b2639221b23cb0681c425e13570e322545e1[m
+Author: sidharth <sidharth.nair@neoito.com>
+Date:   Tue Nov 14 23:04:11 2023 +0530
+
+    search by department name successful
