@@ -114,9 +114,9 @@ function returnDob() {
 }
 
 function createEmployee() {
-  let employeeName = returnName();
-  let employeeDob = returnDob();
-  let employeeDept = returnDepartment();
+  const employeeName = returnName();
+  const employeeDob = returnDob();
+  const employeeDept = returnDepartment();
   const employeeID = uuid.v4(); //generates random unique ID for employee
   const newData = {
     name: employeeName,
@@ -198,15 +198,15 @@ function displayByDepartment() {
       throw new Error("Client error, department name not given.");
     }
     readJsonData();
-    let employeesInDepartment = [];
+    const employeesInDepartment = [];
     let employeeCount = 0;
     for (let i = 0; i < readData.length; i++) {
       if (readData[i]["dept"] === department) {
-        let employeeName = readData[i]["name"];
-        let employeeDob = readData[i]["dob"];
-        let employeeAge = calculateAge(employeeDob);
+        const employeeName = readData[i]["name"];
+        const employeeDob = readData[i]["dob"];
+        const employeeAge = calculateAge(employeeDob);
 
-        let employeeDetails = {
+        const employeeDetails = {
           name: employeeName,
           dob: employeeDob,
           age: employeeAge,
@@ -274,7 +274,7 @@ function writeJsonData() {
 
 //function to display employee details
 function displayDetails(employeeObject) {
-  let employeeAge = calculateAge(employeeObject["dob"]);
+  const employeeAge = calculateAge(employeeObject["dob"]);
   console.log(
     `\nEmployee name: ${employeeObject["name"]}\nEmployee ID: ${employeeObject["id"]}\nEmployee department: ${employeeObject["dept"]}\nEmployee age: ${employeeAge}\n`
   );
@@ -318,6 +318,6 @@ function calculateAge(dateOfBirth) {
   const dobParts = dateOfBirth.split("-");
   const dob = new Date(`${dobParts[2]}-${dobParts[1]}-${dobParts[0]}`);
   const today = new Date();
-  let age = today.getFullYear() - dob.getFullYear();
+  const age = today.getFullYear() - dob.getFullYear();
   return `${age}`;
 }
