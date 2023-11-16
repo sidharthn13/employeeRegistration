@@ -95,8 +95,8 @@ function returnDepartment() {
 }
 
 function getDob() {
-  let dob = prompt("Enter date of birth (dd:mm:yy) > ");
-  const regexDob = /^(0[1-9]|[12][0-9]|3[01])\:(0[1-9]|1[0-2])\:\d{2}$/;
+  let dob = prompt("Enter date of birth (dd-mm-yyyy) > ");
+  const regexDob = /^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/;
   try {
     if (!regexDob.test(dob)) {
       throw new Error("Client error: invalid DOB ");
@@ -315,19 +315,9 @@ function log(message) {
 }
 
 function calculateAge(dateOfBirth) {
-  let dobArray = dateOfBirth.split(":");
-  let dobDay = parseInt(dobArray[0]);
-  let dobMonth = parseInt(dobArray[1]) - 1;
-  let dobYear = parseInt(dobArray[2]) + 2000;
-  let birthDate = new Date(dobYear, dobMonth, dobDay);
-  let currentDate = new Date();
-  let age = currentDate.getFullYear() - birthDate.getFullYear();
-  if (
-    currentDate.getMonth() < birthDate.getMonth() ||
-    (currentDate.getMonth() === birthDate.getMonth() &&
-      currentDate.getDate() < birthDate.getDate())
-  ) {
-    age--;
-  }
+  const dobParts = dateOfBirth.split("-");
+  const dob = new Date(`${dobParts[2]}-${dobParts[1]}-${dobParts[0]}`);
+  const today = new Date();
+  let age = today.getFullYear() - dob.getFullYear();
   return `${age}`;
 }
