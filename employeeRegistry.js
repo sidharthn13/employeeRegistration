@@ -59,9 +59,10 @@ function selectOperation() {
 }
 
 function getName() {
+  const regexName = /^[A-Za-z\s]+$/;
   let employee = prompt("Enter employee name > ");
   try {
-    if (employee == "") {
+    if (!regexName.test(employee)) {
       throw new Error("Client error: Invalid name format");
     }
     employeeNameGlobal = employee;
@@ -71,6 +72,7 @@ function getName() {
     getName();
   }
 }
+
 function returnName() {
   getName();
   return employeeNameGlobal;
@@ -89,6 +91,7 @@ function getDepartment() {
     getDepartment();
   }
 }
+
 function returnDepartment() {
   getDepartment();
   return employeeDepartmentGlobal;
@@ -108,6 +111,7 @@ function getDob() {
     getDob();
   }
 }
+
 function returnDob() {
   getDob();
   return employeeDobGlobal;
@@ -226,29 +230,20 @@ function displayByDepartment() {
 }
 
 function updateEmployeeRecord() {
-  try {
-    const name = prompt(
-      "Enter name of employee whose record has to be updated > "
-    );
-    if (name === "") {
-      throw new Error("Client error, employee name not provided.");
+  const name = returnName();
+  readJsonData();
+  for (let i = 0; i < readData.length; i++) {
+    if (readData[i]["name"] === name) {
+      console.log("Current employee details:");
+      displayDetails(readData[i]);
+      //update
+      update(i);
+      console.log("\nSuccessfully Updated\n");
+      return selectOperation();
     }
-    readJsonData();
-    for (let i = 0; i < readData.length; i++) {
-      if (readData[i]["name"] === name) {
-        console.log("Current employee details:");
-        displayDetails(readData[i]);
-        //update
-        update(i);
-        console.log("\nSuccessfully Updated\n");
-      }
-    }
-    selectOperation();
-  } catch (error) {
-    console.log(`\n${error.message}. Please enter data\n`);
-    createErrorMessage(error);
-    selectOperation();
   }
+  console.log("\nNo such user..heading back to home page.\n");
+  selectOperation();
 }
 
 function update(index) {
