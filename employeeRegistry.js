@@ -71,7 +71,7 @@ function getName() {
     getName();
   }
 }
-function retName() {
+function returnName() {
   getName();
   return employeeNameGlobal;
 }
@@ -89,7 +89,7 @@ function getDepartment() {
     getDepartment();
   }
 }
-function retDept() {
+function returnDepartment() {
   getDepartment();
   return employeeDepartmentGlobal;
 }
@@ -108,15 +108,15 @@ function getDob() {
     getDob();
   }
 }
-function retDob() {
+function returnDob() {
   getDob();
   return employeeDobGlobal;
 }
 
 function createEmployee() {
-  let employeeName = retName();
-  let employeeDob = retDob();
-  let employeeDept = retDept();
+  let employeeName = returnName();
+  let employeeDob = returnDob();
+  let employeeDept = returnDepartment();
   const employeeID = uuid.v4(); //generates random unique ID for employee
   const newData = {
     name: employeeName,
@@ -252,9 +252,9 @@ function updateEmployeeRecord() {
 }
 
 function update(index) {
-  const name = prompt("Enter name > ");
-  const department = prompt("Enter department > ");
-  const dob = prompt("Enter date of birth > ");
+  const name = returnName();
+  const department = returnDepartment();
+  const dob = returnDob();
   readData[index]["name"] = name;
   readData[index]["dept"] = department;
   readData[index]["dob"] = dob;
